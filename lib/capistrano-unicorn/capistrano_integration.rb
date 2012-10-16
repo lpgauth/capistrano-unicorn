@@ -98,11 +98,10 @@ module CapistranoUnicorn
 
         # Set unicorn vars
         #
-        before [ 'unicorn:start', 'unicorn:stop', 'unicorn:shutdown', 
-                 'unicorn:restart', 'unicorn:reload', 'unicorn:add_worker',  
+        before [ 'unicorn:start', 'unicorn:stop', 'unicorn:shutdown',
+                 'unicorn:restart', 'unicorn:reload', 'unicorn:add_worker',
                  'unicorn:remove_worker' ] do
           _cset(:unicorn_pid) { "#{fetch(:current_path)}/tmp/pids/unicorn.pid" }
-          _cset(:app_env) { (fetch(:rails_env) rescue 'production') }
           _cset(:unicorn_env) { fetch(:app_env) }
           _cset(:unicorn_bin, "unicorn")
         end
